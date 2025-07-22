@@ -225,3 +225,46 @@ const style = document.createElement('style');
 style.textContent = additionalCSS;
 document.head.appendChild(style);
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Adiciona efeitos de hover suaves aos botões
+    const buttons = document.querySelectorAll('.btn-primary, .btn-cta, .btn-price, .btn-about-cta');
+    
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+            this.style.transition = 'all 0.3s ease';
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.transition = 'all 0.3s ease';
+        });
+    });
+
+    // Adiciona efeito de clique aos cards dos módulos
+    const moduleCards = document.querySelectorAll('.module-card');
+    
+    moduleCards.forEach(card => {
+        card.addEventListener('click', function() {
+            // Adiciona uma animação de clique
+            this.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+    });
+
+    // Smooth scroll para links internos (se houver)
+    const links = document.querySelectorAll('a[href^="#"]');
+    
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+});
