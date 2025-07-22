@@ -173,12 +173,30 @@ body {
     padding: 20px;
     background: #e9ecef;
     border-radius: 8px;
+    text-align: center;
 }
 
-.about-cta p {
-    font-size: 1.2rem;
-    color: #333;
-    margin: 0;
+.btn-about-cta {
+    display: inline-block;
+    background: linear-gradient(145deg, #30d5c8, #28b4a9);
+    color: white;
+    padding: 18px 35px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 16px rgba(48, 213, 200, 0.3);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-about-cta:hover {
+    background: linear-gradient(145deg, #28b4a9, #239a8f);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(48, 213, 200, 0.4);
 }
 
 .about-image img {
@@ -598,7 +616,7 @@ body {
     .module-card h3 { font-size: 1rem; }
     .modules-title, .team-text h2, .instructor-text h2, .about-text h2, .cta-content h2 { font-size: 2rem; }
     
-    .btn-primary, .btn-cta, .btn-price { padding: 15px 30px; font-size: 1rem; }
+    .btn-primary, .btn-cta, .btn-price, .btn-about-cta { padding: 15px 30px; font-size: 1rem; }
     .price-section { padding: 60px 20px; }
     .guarantee-bar p { font-size: 1rem; }
 }
@@ -611,3 +629,4 @@ body {
     .price-value .cents { font-size: 2rem; }
     .price-value .currency { font-size: 1.5rem; margin-top: 5px; }
 }
+
