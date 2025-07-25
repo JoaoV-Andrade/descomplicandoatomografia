@@ -50,67 +50,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Efeito de digitação no título principal
-    function typeWriter(element, text, speed = 100) {
-        let i = 0;
-        element.innerHTML = '';
-        
-        function type() {
-            if (i < text.length) {
-                element.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(type, speed);
-            }
-        }
-        type();
-    }
-
-    // Aplicar efeito de digitação ao título principal após um delay
-    setTimeout(() => {
-        const heroTitle = document.querySelector('.hero-title');
-        if (heroTitle) {
-            const originalText = heroTitle.textContent;
-            typeWriter(heroTitle, originalText, 150);
-        }
-    }, 1000);
-
-    // Contador animado para o preço
-    function animateCounter(element, target, duration = 2000) {
-        let start = 0;
-        const increment = target / (duration / 16);
-        
-        function updateCounter() {
-            start += increment;
-            if (start < target) {
-                element.textContent = Math.floor(start).toLocaleString('pt-BR');
-                requestAnimationFrame(updateCounter);
-            } else {
-                element.textContent = target.toLocaleString('pt-BR');
-            }
-        }
-        updateCounter();
-    }
-
-    // Observar seção de preço para animar contador
-    const priceObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const amountElement = entry.target.querySelector('.amount');
-                if (amountElement && !amountElement.classList.contains('animated')) {
-                    amountElement.classList.add('animated');
-                    animateCounter(amountElement, 299);
-                }
-            }
-        });
-    }, { threshold: 0.5 });
-
-    const priceSection = document.querySelector('.price');
-    if (priceSection) {
-        priceObserver.observe(priceSection);
-    }
+    // REMOVIDO: Contador animado para o preço
+    // O valor R$ 299 agora aparece estático no HTML
 
     // Adicionar efeito de loading aos botões
-    const buttons = document.querySelectorAll('.btn-primary, .btn-cta, .btn-price');
+    const buttons = document.querySelectorAll('.btn-primary, .btn-cta, .btn-price, .btn-about-cta');
     buttons.forEach(button => {
         button.addEventListener('click', function(e) {
             // Adicionar efeito de ripple
@@ -159,6 +103,19 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
+
+    // Efeito de fade-in na imagem do título
+    const titleImage = document.querySelector('.hero-title-image img');
+    if (titleImage) {
+        titleImage.style.opacity = '0';
+        titleImage.style.transform = 'translateY(20px)';
+        titleImage.style.transition = 'all 1s ease-out';
+        
+        setTimeout(() => {
+            titleImage.style.opacity = '1';
+            titleImage.style.transform = 'translateY(0)';
+        }, 500);
+    }
 
 });
 
@@ -213,10 +170,17 @@ const additionalCSS = `
         transition: transform 0.3s ease;
     }
 
-    .logo img:hover { /* <<-- Remova ", .footer-logo:hover" daqui */
-    transform: scale(1.05);
-}
+    .logo img:hover {
+        transform: scale(1.05);
+    }
 
+    .hero-title-image img {
+        transition: all 0.3s ease;
+    }
+
+    .hero-title-image img:hover {
+        transform: scale(1.02);
+        filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.4));
     }
 `;
 
@@ -224,47 +188,3 @@ const additionalCSS = `
 const style = document.createElement('style');
 style.textContent = additionalCSS;
 document.head.appendChild(style);
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Adiciona efeitos de hover suaves aos botões
-    const buttons = document.querySelectorAll('.btn-primary, .btn-cta, .btn-price, .btn-about-cta');
-    
-    buttons.forEach(button => {
-        button.addEventListener('mouseenter', function() {
-            this.style.transition = 'all 0.3s ease';
-        });
-        
-        button.addEventListener('mouseleave', function() {
-            this.style.transition = 'all 0.3s ease';
-        });
-    });
-
-    // Adiciona efeito de clique aos cards dos módulos
-    const moduleCards = document.querySelectorAll('.module-card');
-    
-    moduleCards.forEach(card => {
-        card.addEventListener('click', function() {
-            // Adiciona uma animação de clique
-            this.style.transform = 'scale(0.98)';
-            setTimeout(() => {
-                this.style.transform = '';
-            }, 150);
-        });
-    });
-
-    // Smooth scroll para links internos (se houver)
-    const links = document.querySelectorAll('a[href^="#"]');
-    
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-});
