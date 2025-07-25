@@ -68,7 +68,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.0);
     z-index: 1;
 }
 
@@ -79,34 +79,28 @@ body {
     margin: 0 auto;
 }
 
-.hero-title {
-    font-family: 'Anton', sans-serif;
-    font-size: 5.5rem;
-    font-weight: 400;
-    margin-bottom: 0;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    line-height: 1.1;
-   
+/* Estilo para a imagem do título */
+.hero-title-image {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.hero-subtitle .script-font {
-    font-family:'Great Vibes', cursive;
-    font-size: 6rem; /* Ajustei o tamanho para a nova fonte */
-    font-weight: 700; /* Usando a versão em negrito para melhor visibilidade */
-    letter-spacing: normal;
-    margin-top: -10px; /* Pequeno ajuste para aproximar do título */
+
+.hero-title-image img {
+    max-width: 100%;
+    height: auto;
+    width: 600px;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Removendo os estilos antigos do título de texto */
+.hero-title {
+    display: none;
 }
 
 .hero-subtitle {
-    font-family: 'Dancing Script', cursive;
-    font-size: 4.5rem;
-    font-weight: 400;
-    margin-bottom: 2rem;
-    text-transform: lowercase;
-    letter-spacing: 2px;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    display: none;
 }
 
 .hero-description {
@@ -368,7 +362,7 @@ body {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.0);
     z-index: 1;
 }
 
@@ -595,14 +589,16 @@ body {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: repeat(6, 150px);
     }
+
+    .hero-title-image img {
+        width: 500px;
+    }
 }
 
 @media (max-width: 768px) {
     .container { padding: 0 15px; }
     .logo { top: 20px; left: 20px; }
     .logo img { width: 180px; }
-    .hero-title { font-size: 2.5rem; }
-    .hero-subtitle { font-size: 2rem; }
     .hero-description, .hero-text { font-size: 1rem; }
     .about-content, .team-content, .instructor-content { grid-template-columns: 1fr; gap: 40px; }
     
@@ -619,14 +615,20 @@ body {
     .btn-primary, .btn-cta, .btn-price, .btn-about-cta { padding: 15px 30px; font-size: 1rem; }
     .price-section { padding: 60px 20px; }
     .guarantee-bar p { font-size: 1rem; }
+
+    .hero-title-image img {
+        width: 400px;
+    }
 }
 
 @media (max-width: 480px) {
-    .hero-title { font-size: 2rem; }
-    .hero-subtitle { font-size: 1.5rem; }
     .modules-title, .team-text h2, .instructor-text h2, .about-text h2, .cta-content h2 { font-size: 1.8rem; }
     .price-value .value { font-size: 4rem; }
     .price-value .cents { font-size: 2rem; }
     .price-value .currency { font-size: 1.5rem; margin-top: 5px; }
+
+    .hero-title-image img {
+        width: 300px;
+    }
 }
 
